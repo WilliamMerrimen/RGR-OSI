@@ -2,7 +2,7 @@
 
 [archives]=KM.ZIP
 
-[dir]=F:\Installator1
+[dir]=C:\Program Files\kmeleon
 
 [files]
 AccessibleMarshal.dll Dir
