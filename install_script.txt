@@ -2,8 +2,7 @@
 
 [archives]=KM.ZIP
 
-[dir]=C:\Program Files\kmeleon
-
+[dir]=C:/Users/William Merrimen/Documents\kmeleon
 [files]
 AccessibleMarshal.dll Dir
 chrome.manifest Dir

@@ -182,8 +182,20 @@ def update_program_name_label():
 
 def browseDir(lab: tk.Label):
     dirlb = filedialog.askdirectory()
-    lab.config(text = dirlb)
-    #return filedialog.askdirectory()
+    install_directory = ""
+    program_name = check_for_install_script()
+    if program_name:
+        file_path = 'install_script.txt'
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+        for i, line in enumerate(lines):
+            line = line.strip()
+            if line.startswith('[dir]'):
+                lines[i] = f"[dir]={dirlb}\kmeleon"
+        with open(file_path, "w") as file:
+            file.writelines(lines)
+    lab.config(text = f"{dirlb}\kmelion")
+    
 
 
 def switchDir(win: tk.Tk):
@@ -234,6 +246,7 @@ broweDirButton = tk.Button(window,
                            width = 10,
                            height = 1)
 broweDirButton.place(x = 380, y = 198)
+
 programDirLabel.place(x = 50, y = 198)
 
 window.mainloop()
