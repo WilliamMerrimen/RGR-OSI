@@ -1,0 +1,11 @@
+altgraph==0.17.4
+colorama==0.4.6
+loguru==0.7.2
+packaging==24.0
+pefile==2023.2.7
+pyinstaller==6.6.0
+pyinstaller-hooks-contrib==2024.6
+pywin32==306
+pywin32-ctypes==0.2.2
+setuptools==69.5.1
+win32-setctime==1.1.0
