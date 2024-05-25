@@ -14,6 +14,7 @@ def copy_files(source, destination):
     shutil.copy(source, destination)
 
 
+
 def check_for_install_script():
     try:
         with open('install_script.txt', 'r') as file:
@@ -181,7 +182,7 @@ def update_program_name_label():
 
 window = tk.Tk()
 window.title("Установка программы")
-window.geometry('400x200')
+window.geometry('500x300')
 
 program_name_label = tk.Label(window, text="Название программы: (не указано)")
 program_name_label.pack()
