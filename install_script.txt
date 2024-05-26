@@ -2,6 +2,7 @@
 
 [archives]=KM.ZIP
 
+<<<<<<< Updated upstream
 [dir]=F:\Installator1
 
 [files]
@@ -14,6 +15,9 @@ freebl3.chk Dir
 freebl3.dll Dir
 gkmedias.dll Dir
 icudt52.dll Dir
+=======
+[dir]=\kmeleonicudt52.dll Dir
+>>>>>>> Stashed changes
 icuin52.dll Dir
 icuuc52.dll Dir
 k-meleon.exe Dir
