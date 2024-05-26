@@ -1,0 +1,27 @@
+[title]=OldNewExplorer
+
+[archives]=OldNewExplorer32.ZIP
+
+[dir]=C:/Users/89137/Downloads/jetbra/OldNewExplorer
+
+
+
+[files]
+OldNewExplorer32.dll Dir
+OldNewExplorer64.dll Dir
+OldNewExplorerCfg.exe Dir
+readme.txt Dir
+
+
+
+[icons]=OldNewExplorerCfg.exe
+
+[registry]
+HKEY_LOCAL_MACHINE\\SOFTWARE\\OldNewExplorer
+Path=C:\Users\89137\OneDrive\Документы\GitHub\RGR-OSI
+Year=2024
+Month=май
+Day=26
+State=0
+
+[end]

@@ -195,10 +195,10 @@ def browseDir(lab: tk.Label):
         for i, line in enumerate(lines):
             line = line.strip()
             if line.startswith('[dir]'):
-                lines[i] = f"[dir]={dirlb}/kmeleon\n"
+                lines[i] = f"[dir]={dirlb}\n"
         with open(file_path, "w+") as file:
             file.writelines(lines)
-    lab.config(text = f"{dirlb}/kmeleon")
+    lab.config(text = f"{dirlb}")
     
 
 

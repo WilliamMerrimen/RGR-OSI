@@ -264,5 +264,10 @@ unistall\helper.exe Dir\unistall\helper.exe
 [registry]
 HKEY_LOCAL_MACHINE\\SOFTWARE\\K-Meleon
 Path=C:\Users\89137\OneDrive\Документы\GitHub\RGR-OSI
+Year=2024
+Month=май
+Day=26
+State=0
+
 
 [end]
