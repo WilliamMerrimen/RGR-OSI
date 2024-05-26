@@ -3,9 +3,7 @@
 [archives]=KM.ZIP
 
 <<<<<<< Updated upstream
-[dir]=F:\Installator1
-
-[files]
+[dir]=C:/Users/89137/OneDrive/Рабочий стол/распеч\kmeleon[files]
 AccessibleMarshal.dll Dir
 chrome.manifest Dir
 D3DCompiler_43.dll Dir
@@ -16,9 +14,7 @@ freebl3.dll Dir
 gkmedias.dll Dir
 icudt52.dll Dir
 =======
-[dir]=\kmeleonicudt52.dll Dir
->>>>>>> Stashed changes
-icuin52.dll Dir
+[dir]=C:/Users/89137/OneDrive/Рабочий стол/распеч\kmeleonicuin52.dll Dir
 icuuc52.dll Dir
 k-meleon.exe Dir
 libEGL.dll Dir

@@ -2,8 +2,11 @@ import os
 import shutil
 import zipfile
 import tkinter as tk
+from tkinter import ttk
+from tkinter import *
 from tkinter import messagebox
 from tkinter import filedialog
+from functools import partial
 import winshell
 from win32com.client import Dispatch
 import winreg
@@ -212,41 +215,97 @@ def switchDir(win: tk.Tk):
     label = tk.Label(win, text=install_directory)
     return label
     #lab.pack()
-        
 
 window = tk.Tk()
-window.title("Установка программы")
-window.geometry('500x300')
+
+window.title("Universal Installator")
+window.geometry('600x300')
 window.resizable(width = False, height = False)
+icon = PhotoImage(file = "programs.png")
+window.iconphoto(False, icon)
+window.attributes("-alpha", 0.96)
 
+# style = ttk.Style()
+# style.theme_use("clam")
+# style.configure("TButton", foreground="white", background="#161414", borderwidth=1, relief="solid")
 
-program_name_label = tk.Label(window, text="Название программы: (не указано)")
+filename = PhotoImage(file = "a.png")
+background_label = Label(window, 
+                         image=filename)
+background_label.place(x=0, 
+                       y=0, 
+                       relwidth=1, 
+                       relheight=1)
+
+program_name_label = ttk.Label(window, 
+                               text="Название программы: (не указано)",
+                               font=("Arial", 12), 
+                               borderwidth=1, 
+                               relief="solid", 
+                               background="#262C25", 
+                               foreground="white", 
+                               padding=8)
 program_name_label.pack()
+
 programDirLabel = switchDir(window)
+programDirLabel.place(x = 50, 
+                      y = 198, 
+                      bordermode="outside")
+
 
 update_program_name_label()
 
-install_button = tk.Button(window,
-                           text="Установить",
-                           command=install_program,
-                           width = 10,
-                           height = 1)
-install_button.place(x = 50, y = 230)
+def changeOnHover(button, colorOnHover, colorOnLeave):
+    
+    button.bind("<Enter>", func=lambda e: button.config(
+        foreground=colorOnHover, background=colorOnLeave))
+     
+    button.bind("<Leave>", func=lambda e: button.config(
+        foreground=colorOnLeave, background=colorOnHover))
+    
+def changeOnHover1(button, colorOnHover, colorOnLeave):
+ 
+    button.bind("<Enter>", func=lambda e: button.config(
+        foreground=colorOnHover, background=colorOnLeave, text="Начать"))
+    
+    button.bind("<Leave>", func=lambda e: button.config(
+        foreground=colorOnLeave, background=colorOnHover, text="Установить"))
 
-uninstall_button = tk.Button(window, 
+install_button = Button(window,
+                           text="Установка",
+                           command=install_program,
+                           cursor="hand1",
+                           width=10,
+                           height=1,
+                           borderwidth=1, 
+                           relief="solid")
+
+install_button.pack(anchor=CENTER, expand=1)
+install_button.place(x = 50, y = 230)
+changeOnHover1(install_button, "black", "white")
+
+uninstall_button = Button(window, 
                              text="Удалить", 
                              command=uninstall_program,
-                             width = 10,
-                             height = 1)
-uninstall_button.place(x = 380, y = 230)
+                             cursor="hand1",
+                             width=10,
+                             height=1,
+                             borderwidth=1, 
+                             relief="solid")
+uninstall_button.pack(anchor=CENTER, expand=1)
+uninstall_button.place(x = 480, y = 230)
+changeOnHover(uninstall_button, "black", "white")
 
-broweDirButton = tk.Button(window,
-                           text="Browse",
+broweDirButton = Button(window,
+                           text="Поиск",
                            command=lambda : browseDir(programDirLabel),
-                           width = 10,
-                           height = 1)
-broweDirButton.place(x = 380, y = 198)
-
-programDirLabel.place(x = 50, y = 198)
+                           cursor="hand1",
+                           width=10,
+                           height=1,
+                             borderwidth=1, 
+                             relief="solid")
+broweDirButton.pack(anchor=CENTER, expand=1)
+broweDirButton.place(x = 480, y = 198)
+changeOnHover(broweDirButton, "black", "white")
 
 window.mainloop()
