@@ -11,11 +11,6 @@ import winshell
 from win32com.client import Dispatch
 import winreg
 
-#shortcutCheckBox = tk.BooleanVar()
-#shortcutCheckBox.set(True)
-#mainMenuCheckBox = tk.BooleanVar()
-#mainMenuCheckBox.set(True)
-
 
 def copy_files(source, destination):
     if not os.path.exists(os.path.dirname(destination)):
@@ -120,8 +115,10 @@ def install_program():
                     data.append(line)
             if archive_name:
                 unpack_archive(archive_name, install_directory)
-                create_desktop_shortcut(os.path.join(install_directory, icon_name))
-                create_start_menu_shortcut(os.path.join(install_directory, icon_name))
+                if shrCutsCh.get():
+                    create_desktop_shortcut(os.path.join(install_directory, icon_name))
+                if mMenuCh.get():
+                    create_start_menu_shortcut(os.path.join(install_directory, icon_name))
                 save_to_registry(data)
                 messagebox.showinfo("Установка завершена", f"Установка {program_name} завершена успешно")
             else:
@@ -202,7 +199,7 @@ def browseDir(lab: tk.Label):
                 lines[i] = f"[dir]={dirlb}/kmeleon\n"
         with open(file_path, "w+") as file:
             file.writelines(lines)
-    lab.config(text = f"{dirlb}/kmelion")
+    lab.config(text = f"{dirlb}/kmeleon")
     
 
 
@@ -226,6 +223,10 @@ window = tk.Tk()
 window.title("Universal Installator")
 window.geometry('600x300')
 window.resizable(width = False, height = False)
+
+shrCutsCh = tk.BooleanVar(window,True)
+mMenuCh = tk.BooleanVar(window,True)
+
 icon = PhotoImage(file = "programs.png")
 window.iconphoto(False, icon)
 window.attributes("-alpha", 0.96)
@@ -235,8 +236,16 @@ window.attributes("-alpha", 0.96)
 # style.configure("TButton", foreground="white", background="#161414", borderwidth=1, relief="solid")
 
 filename = PhotoImage(file = "a.png")
+smaller_image=filename.subsample(3,3)
+
+# C = Canvas(window, bg="blue", height=600, width=600)
+# C.pack(fill = "both", expand = True)
+# C.create_image( 0, 0, image = smaller_image,  
+#                      anchor = "nw")
+
 background_label = Label(window, 
-                         image=filename)
+                         image=smaller_image)
+
 background_label.place(x=0, 
                        y=0, 
                        relwidth=1, 
@@ -256,7 +265,6 @@ programDirLabel = switchDir(window)
 programDirLabel.place(x = 50, 
                       y = 198, 
                       bordermode="outside")
-
 
 update_program_name_label()
 
@@ -312,5 +320,23 @@ broweDirButton = Button(window,
 broweDirButton.pack(anchor=CENTER, expand=1)
 broweDirButton.place(x = 480, y = 198)
 changeOnHover(broweDirButton, "black", "white")
+
+shortCutsChBox = ttk.Checkbutton(window,
+                                text = "Создать ярлык на Рабочем столе",
+                                variable = shrCutsCh,
+                                cursor="hand1",
+                                onvalue = True,
+                                offvalue = False,
+                                )
+shortCutsChBox.place(x = 50, y = 140)
+
+mainMenuChBox = ttk.Checkbutton(window,
+                               text = "Создать ярлык на Главном Меню(Пуск)",
+                                variable = mMenuCh,
+                                cursor="hand1",
+                                onvalue = True,
+                                offvalue = False,
+                                )
+mainMenuChBox.place(x = 50, y = 160)
 
 window.mainloop()
