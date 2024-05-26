@@ -2,8 +2,11 @@
 
 [archives]=KM.ZIP
 
-<<<<<<< Updated upstream
-[dir]=C:/Users/89137/OneDrive/Рабочий стол/распеч\kmeleon[files]
+[dir]=C:/Users/89137/OneDrive/Рабочий стол/фото 4 а/kmeleon
+
+
+
+[files]
 AccessibleMarshal.dll Dir
 chrome.manifest Dir
 D3DCompiler_43.dll Dir
@@ -13,8 +16,7 @@ freebl3.chk Dir
 freebl3.dll Dir
 gkmedias.dll Dir
 icudt52.dll Dir
-=======
-[dir]=C:/Users/89137/OneDrive/Рабочий стол/распеч\kmeleonicuin52.dll Dir
+icuin52.dll Dir
 icuuc52.dll Dir
 k-meleon.exe Dir
 libEGL.dll Dir
@@ -261,6 +263,6 @@ unistall\helper.exe Dir\unistall\helper.exe
 
 [registry]
 HKEY_LOCAL_MACHINE\\SOFTWARE\\K-Meleon
-Path=F:\Installator\Installator
+Path=C:\Users\89137\OneDrive\Р”РѕРєСѓРјРµРЅС‚С‹\GitHub\RGR-OSI
 
 [end]
