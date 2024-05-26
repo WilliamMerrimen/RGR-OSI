@@ -8,12 +8,6 @@ import winshell
 from win32com.client import Dispatch
 import winreg
 
-
-#shortcutCheckBox = tk.BooleanVar()
-#shortcutCheckBox.set(True)
-#mainMenuCheckBox = tk.BooleanVar()
-#mainMenuCheckBox.set(True)
-
 def copy_files(source, destination):
     if not os.path.exists(os.path.dirname(destination)):
         os.makedirs(os.path.dirname(destination))
@@ -117,8 +111,10 @@ def install_program():
                     data.append(line)
             if archive_name:
                 unpack_archive(archive_name, install_directory)
-                create_desktop_shortcut(os.path.join(install_directory, icon_name))
-                create_start_menu_shortcut(os.path.join(install_directory, icon_name))
+                if shrCutsCh.get():
+                    create_desktop_shortcut(os.path.join(install_directory, icon_name))
+                if mMenuCh.get():
+                    create_start_menu_shortcut(os.path.join(install_directory, icon_name))
                 save_to_registry(data)
                 messagebox.showinfo("Установка завершена", f"Установка {program_name} завершена успешно")
             else:
@@ -200,8 +196,6 @@ def browseDir(lab: tk.Label):
         with open(file_path, "w+") as file:
             file.writelines(lines)
     lab.config(text = f"{dirlb}/kmelion")
-    
-
 
 def switchDir(win: tk.Tk):
     install_directory = ""
@@ -216,7 +210,6 @@ def switchDir(win: tk.Tk):
                     install_directory = line.split('=')[1].strip()
     label = tk.Label(win, text=install_directory)
     return label
-    #lab.pack()
         
 
 window = tk.Tk()
@@ -224,6 +217,8 @@ window.title("Установка программы")
 window.geometry('500x300')
 window.resizable(width = False, height = False)
 
+shrCutsCh = tk.BooleanVar(window,True)
+mMenuCh = tk.BooleanVar(window,True)
 
 program_name_label = tk.Label(window, text="Название программы: (не указано)")
 program_name_label.pack()
@@ -253,5 +248,21 @@ broweDirButton = tk.Button(window,
 broweDirButton.place(x = 380, y = 198)
 
 programDirLabel.place(x = 50, y = 198)
+
+shortCutsChBox = tk.Checkbutton(window,
+                                text = "Создать ярлык на Рабочем столе",
+                                variable = shrCutsCh,
+                                onvalue = True,
+                                offvalue = False,
+                                )
+shortCutsChBox.place(x = 50, y = 140)
+
+mainMenuChBox = tk.Checkbutton(window,
+                               text = "Создать ярлык на Главном Меню(Пуск)",
+                                variable = mMenuCh,
+                                onvalue = True,
+                                offvalue = False,
+                                )
+mainMenuChBox.place(x = 50, y = 160)
 
 window.mainloop()
