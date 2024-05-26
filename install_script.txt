@@ -2,7 +2,8 @@
 
 [archives]=KM.ZIP
 
-[dir]=C:/Users/William Merrimen/Documents\kmeleon
+[dir]=C:/Users/William Merrimen/Pictures/kmeleon
+
 [files]
 AccessibleMarshal.dll Dir
 chrome.manifest Dir
@@ -260,6 +261,6 @@ unistall\helper.exe Dir\unistall\helper.exe
 
 [registry]
 HKEY_LOCAL_MACHINE\\SOFTWARE\\K-Meleon
-Path=F:\Installator\Installator
+Path=G:\Proj\
 
 [end]

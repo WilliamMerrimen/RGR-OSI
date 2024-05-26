@@ -9,6 +9,11 @@ from win32com.client import Dispatch
 import winreg
 
 
+#shortcutCheckBox = tk.BooleanVar()
+#shortcutCheckBox.set(True)
+#mainMenuCheckBox = tk.BooleanVar()
+#mainMenuCheckBox.set(True)
+
 def copy_files(source, destination):
     if not os.path.exists(os.path.dirname(destination)):
         os.makedirs(os.path.dirname(destination))
@@ -191,10 +196,10 @@ def browseDir(lab: tk.Label):
         for i, line in enumerate(lines):
             line = line.strip()
             if line.startswith('[dir]'):
-                lines[i] = f"[dir]={dirlb}\kmeleon"
-        with open(file_path, "w") as file:
+                lines[i] = f"[dir]={dirlb}/kmeleon\n"
+        with open(file_path, "w+") as file:
             file.writelines(lines)
-    lab.config(text = f"{dirlb}\kmelion")
+    lab.config(text = f"{dirlb}/kmelion")
     
 
 
