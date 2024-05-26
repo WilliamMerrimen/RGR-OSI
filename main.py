@@ -3,6 +3,7 @@ import shutil
 import zipfile
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import filedialog
 import winshell
 from win32com.client import Dispatch
 import winreg
@@ -12,6 +13,7 @@ def copy_files(source, destination):
     if not os.path.exists(os.path.dirname(destination)):
         os.makedirs(os.path.dirname(destination))
     shutil.copy(source, destination)
+
 
 
 def check_for_install_script():
@@ -178,20 +180,73 @@ def update_program_name_label():
     else:
         program_name_label.config(text="Название программы: (не указано)")
 
+def browseDir(lab: tk.Label):
+    dirlb = filedialog.askdirectory()
+    install_directory = ""
+    program_name = check_for_install_script()
+    if program_name:
+        file_path = 'install_script.txt'
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+        for i, line in enumerate(lines):
+            line = line.strip()
+            if line.startswith('[dir]'):
+                lines[i] = f"[dir]={dirlb}\kmeleon"
+        with open(file_path, "w") as file:
+            file.writelines(lines)
+    lab.config(text = f"{dirlb}\kmelion")
+    
+
+
+def switchDir(win: tk.Tk):
+    install_directory = ""
+    program_name = check_for_install_script()
+    if program_name:
+        file_path = 'install_script.txt'
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                line = line.strip()
+                if line.startswith('[dir]'):
+                    install_directory = line.split('=')[1].strip()
+    label = tk.Label(win, text=install_directory)
+    return label
+    #lab.pack()
+        
 
 window = tk.Tk()
 window.title("Установка программы")
-window.geometry('400x200')
+window.geometry('500x300')
+window.resizable(width = False, height = False)
+
 
 program_name_label = tk.Label(window, text="Название программы: (не указано)")
 program_name_label.pack()
+programDirLabel = switchDir(window)
 
 update_program_name_label()
 
-install_button = tk.Button(window, text="Установить", command=install_program)
-install_button.pack()
+install_button = tk.Button(window,
+                           text="Установить",
+                           command=install_program,
+                           width = 10,
+                           height = 1)
+install_button.place(x = 50, y = 230)
 
-uninstall_button = tk.Button(window, text="Удалить", command=uninstall_program)
-uninstall_button.pack()
+uninstall_button = tk.Button(window, 
+                             text="Удалить", 
+                             command=uninstall_program,
+                             width = 10,
+                             height = 1)
+uninstall_button.place(x = 380, y = 230)
+
+broweDirButton = tk.Button(window,
+                           text="Browse",
+                           command=lambda : browseDir(programDirLabel),
+                           width = 10,
+                           height = 1)
+broweDirButton.place(x = 380, y = 198)
+
+programDirLabel.place(x = 50, y = 198)
 
 window.mainloop()
