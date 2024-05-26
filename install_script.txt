@@ -2,7 +2,9 @@
 
 [archives]=KM.ZIP
 
-[dir]=C:/Users/William Merrimen/3D Objects/kmeleon
+[dir]=C:/Users/89137/Downloads/jetbra/kmeleon
+
+
 
 [files]
 AccessibleMarshal.dll Dir
@@ -261,6 +263,6 @@ unistall\helper.exe Dir\unistall\helper.exe
 
 [registry]
 HKEY_LOCAL_MACHINE\\SOFTWARE\\K-Meleon
-Path=G:\Proj\
+Path=C:\Users\89137\OneDrive\Документы\GitHub\RGR-OSI
 
 [end]
